@@ -1,0 +1,24 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  Table [dbo].[FactSalida]    Script Date: 12/6/2025 19:01:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[FactSalida](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[FechaSalida_id] [nvarchar](50) NOT NULL,
+	[Libro_id] [bigint] NOT NULL,
+	[Sucursal_id] [bigint] NOT NULL,
+	[TipoSalida_id] [bigint] NOT NULL,
+	[Cantidad] [bigint] NOT NULL,
+	[PrecioVenta] [bigint] NOT NULL,
+ CONSTRAINT [PK__FactSali__3213E83F8E62D72B] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO

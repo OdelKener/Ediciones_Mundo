@@ -1,0 +1,30 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_DimFechaSalida]    Script Date: 12/6/2025 18:54:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[Load_DimFechaSalida]
+AS
+BEGIN
+   
+   Delete From DimFechaSalida;
+
+    INSERT INTO DimFechaSalida (id, Año, Mes, Dia)
+    SELECT 
+        DISTINCT
+        CONVERT(INT, CONVERT(CHAR(8), TRY_CAST(fecha AS DATE), 112)) AS id,  -- yyyymmdd
+        YEAR(TRY_CAST(fecha AS DATE)) AS Año,
+        FORMAT(TRY_CAST(fecha AS DATE), 'MM') AS Mes,
+        FORMAT(TRY_CAST(fecha AS DATE), 'dd') AS Dia
+    FROM EMundoV.dbo.Salida_salida
+    WHERE TRY_CAST(fecha AS DATE) IS NOT NULL;
+END;
+GO

@@ -1,0 +1,31 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_DimLibros]    Script Date: 12/6/2025 18:56:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+CREATE   PROCEDURE [dbo].[Load_DimLibros]
+AS
+BEGIN
+     Delete From DimLibros;
+
+    INSERT INTO DimLibros (id, Categoria, Nombre, CostoActual, Existencia)
+    SELECT 
+        l.id,
+        l.categorias_id,
+        l.nombre,
+        l.costoactual,
+        l.existencia
+    FROM EMundoV.dbo.Libros_libro l;
+END;
+GO

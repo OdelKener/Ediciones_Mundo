@@ -1,0 +1,38 @@
+USE [EMundoV]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_StagingSalida]    Script Date: 12/6/2025 18:28:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE   PROCEDURE [dbo].[Load_StagingSalida]
+
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    SELECT 
+         s.id            AS [SalidaKey],
+         dfs.id AS [DimFechaSalidaKey] ,
+         ds.libro_id       AS [LibroKey],
+         ns.id            AS [NicaraguaKey],
+         s.tiposalida_id  AS [TipoSalidaKey],
+         ds.cantidad                                      AS [Cantidad],
+		 ds.precioventa                                   AS [PrecioVenta]
+
+    FROM dbo.Salida_salida s
+    INNER JOIN dbo.Salida_detallesalida ds ON s.id = ds.salida_id
+    INNER JOIN dbo.Nicaragua_sucursal ns ON s.sucursalid_id= ns.id
+    Inner JOIN EMundoVDW.dbo.DimFechaSalida dfs ON CAST(S.Fecha AS nvarchar) = dfs.id
+ 
+END;
+
+
+
+
+GO

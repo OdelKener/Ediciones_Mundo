@@ -1,0 +1,28 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_DimTipoSalida]    Script Date: 12/6/2025 18:58:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+CREATE    PROCEDURE [dbo].[Load_DimTipoSalida]
+AS
+BEGIN
+     Delete From DimTipoSalida;
+
+    INSERT INTO DimTipoSalida (id, Nombre)
+    SELECT 
+        ts.id,
+        ts.Nombre
+    FROM EMundoV.dbo.TipoSalida_tiposalida ts;
+END;
+GO

@@ -1,0 +1,26 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_DimSucursal]    Script Date: 12/6/2025 18:57:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE   PROCEDURE [dbo].[Load_DimSucursal]
+AS
+BEGIN
+    Delete from DimSucursal;
+
+    INSERT INTO DimSucursal (id, Nombre, Codigo)
+    SELECT 
+        s.id,
+        s.Nombre,
+        s.Codigo
+    FROM EMundoV.dbo.Nicaragua_sucursal s;
+END;
+GO

@@ -1,0 +1,48 @@
+USE [EMundoVDW]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Load_FactSalida]    Script Date: 12/6/2025 19:00:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE    PROCEDURE [dbo].[Load_FactSalida]
+AS
+BEGIN
+     truncate table FactSalida;
+
+    INSERT INTO FactSalida (
+     
+        FechaSalida_id,
+        Libro_id,
+        Sucursal_id,
+        TipoSalida_id,
+        Cantidad,
+        PrecioVenta
+    )
+
+
+    SELECT 
+
+
+      
+        -- Buscamos el ID de fecha en la dimensión según la fecha de salida
+        df.id AS FechaSalida_id,
+        ds.libro_id,
+        s.sucursalid_id,
+        s.tiposalida_id,
+        ds.cantidad,
+        ds.precioventa
+ 
+ FROM EMundoV.dbo.Salida_detallesalida ds
+    INNER JOIN EMundoV.dbo.Salida_salida s ON ds.salida_id = s.id
+    INNER JOIN DimFechaSalida df ON 
+        YEAR(CAST(s.fecha AS DATE)) = CAST(df.Año AS INT) AND
+        FORMAT(CAST(s.fecha AS DATE), 'MM') = df.Mes AND
+        FORMAT(CAST(s.fecha AS DATE), 'dd') = df.Dia;
+END;
+GO
