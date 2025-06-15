@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="KABRONKTOM_MSSQLSERVER300.EMundoV"
+  DTS:DTSID="{AB332855-8216-4D28-8E19-265C1FD91ECF}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=KABRONKTOM\MSSQLSERVER300;Initial Catalog=EMundoV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-SSIS_EMundoV-{AB332855-8216-4D28-8E19-265C1FD91ECF}KABRONKTOM\MSSQLSERVER300.EMundoV;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
